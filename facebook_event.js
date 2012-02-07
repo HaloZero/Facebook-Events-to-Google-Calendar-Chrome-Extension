@@ -16,15 +16,13 @@ if (window.location.hash.length === 0) {
 	var queryParams = [accessToken];
 	var query = queryParams.join('&');
 	var event_url = path + query;
-	console.log(event_url);
 	$.ajax({
 		url : event_url,
 		type : "GET",
 		dataType: "JSON",
 		success: function(response) {
-
 			var titleText = response.name;
-			var descriptionText = response.description.substring(0, 500);
+			var descriptionText = response.description ? response.description.substring(0, 500) : "";
 			var startTime = formatTime(response.start_time);
 			var endTime = formatTime(response.end_time);
 			var locationText = get_location(response).replace(/\n$/,'').replace(/\n/g,'');
@@ -34,7 +32,7 @@ if (window.location.hash.length === 0) {
 			+ '&location=' + locationText
 			+ '&details=' + encodeURIComponent(descriptionText)
 			+ '&trp;=true&sprop=+website:http://www.facebook.com&sprop;=name:Jave+Cafe&gsessionid=OK&sf=true&output=xml';
-			window.open(href, "_self");
+			window.open(href);
 
 		}
 	});
@@ -42,15 +40,14 @@ if (window.location.hash.length === 0) {
 
 function get_location(response) {
 	var venue = response.venue;
-	if (venue.street) {
+	if (venue && venue.street) {
 		return response.location + " " + venue.street + " " + venue.city + ", " + venue.state;
 	} else {
-		console.log("no idea");
-		return venue
+		return "";
 	}
 }
 function formatTime(dateTime) {
-	var d = new Date(dateTime);
+	var d = new XDate(new Date(dateTime)).addHours(8);
 	var dStr = d.getUTCFullYear()
            + pad(d.getUTCMonth() + 1)
            + pad(d.getUTCDate())

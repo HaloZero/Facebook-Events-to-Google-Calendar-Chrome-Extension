@@ -13,19 +13,19 @@
   "content_scripts": [
     {
   		"matches" : ["https://www.facebook.com/events/*"],
-  		"js" : ["jquery.js", "facebook_event.js"]
+  		"js" : ["jquery.js", "xdate.js", "facebook_event.js"]
   	},
     {
       "matches" : ["https://graph.facebook.com/*"],
-      "js" : ["jquery.js", "facebook_event.js"]
+      "js" : ["jquery.js", "xdate.js", "facebook_event.js"]
     },
     {
       "matches" : ["https://www.facebook.com/connect/login_success.html*"],
-      "js" : ["jquery.js", "facebook_event.js"]
+      "js" : ["jquery.js", "xdate.js", "facebook_event.js"]
     },
     {
       "matches" : ["http://www.facebook.com/events/*"],
-      "js" : ["jquery.js", "facebook_event.js"]
+      "js" : ["jquery.js", "xdate.js", "facebook_event.js"]
     }
   ]
 }
