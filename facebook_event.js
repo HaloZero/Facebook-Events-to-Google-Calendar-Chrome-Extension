@@ -22,7 +22,48 @@ if (window.location.hash.length === 0) {
 		type : "GET",
 		dataType: "JSON",
 		success: function(response) {
-			console.log(response);
+
+			var titleText = response.name;
+			var descriptionText = response.description.substring(0, 500);
+			var startTime = formatTime(response.start_time);
+			var endTime = formatTime(response.end_time);
+			var locationText = get_location(response).replace(/\n$/,'').replace(/\n/g,'');
+			var href = 'https://www.google.com/calendar/render?action=TEMPLATE'
+			+ '&text=' + encodeURIComponent(titleText)
+			+ '&dates='+ startTime + '/' + endTime
+			+ '&location=' + locationText
+			+ '&details=' + encodeURIComponent(descriptionText)
+			+ '&trp;=true&sprop=+website:http://www.facebook.com&sprop;=name:Jave+Cafe&gsessionid=OK&sf=true&output=xml';
+			window.open(href, "_self");
+
 		}
 	});
+}
+
+function get_location(response) {
+	var venue = response.venue;
+	if (venue.street) {
+		return response.location + " " + venue.street + " " + venue.city + ", " + venue.state;
+	} else {
+		console.log("no idea");
+		return venue
+	}
+}
+function formatTime(dateTime) {
+	var d = new Date(dateTime);
+	var dStr = d.getUTCFullYear()
+           + pad(d.getUTCMonth() + 1)
+           + pad(d.getUTCDate())
+           + 'T'
+           + pad(d.getUTCHours())
+           + pad(d.getUTCMinutes())
+           + '00Z';
+
+  return dStr;
+}
+
+function pad(str)
+{
+  str = str.toString();
+  return (str.length == 1) ? '0' + str : str;
 }
