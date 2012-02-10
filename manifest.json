@@ -3,7 +3,7 @@
   "version": "1.0",
   "description": "Add individual facebook events to google calendar",
   "browser_action": {
-    "default_icon": "wheee.jpg"
+    "default_icon": "icon.png"
   },
   "permissions": [
     "http://*.facebook.com/*",
@@ -11,10 +11,6 @@
     "http://*.google.com/*"
   ],
   "content_scripts": [
-    {
-  		"matches" : ["https://www.facebook.com/events/*"],
-  		"js" : ["jquery.js", "xdate.js", "facebook_event.js"]
-  	},
     {
       "matches" : ["https://graph.facebook.com/*"],
       "js" : ["jquery.js", "xdate.js", "facebook_event.js"]
@@ -24,7 +20,7 @@
       "js" : ["jquery.js", "xdate.js", "facebook_event.js"]
     },
     {
-      "matches" : ["http://www.facebook.com/events/*"],
+      "matches" : ["https://www.facebook.com/*"],
       "js" : ["jquery.js", "xdate.js", "facebook_event.js"]
     }
   ]
