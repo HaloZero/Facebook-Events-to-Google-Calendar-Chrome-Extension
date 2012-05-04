@@ -3,7 +3,12 @@
   "version": "1.0",
   "description": "Add individual facebook events to google calendar",
   "page_action": {
-    "default_icon": "icon.png"
+    "default_icon": "calendar_icon_16.png"
+  },
+  "icons": {
+    "16" : "calendar_icon_16.png",
+    "48" : "calendar_icon_48.png",
+    "128" : "calendar_icon_128.png"
   },
   "permissions": [
     "http://*.facebook.com/*",
