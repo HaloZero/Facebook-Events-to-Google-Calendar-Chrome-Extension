@@ -12,7 +12,6 @@ function checkURL() {
 	delete pathSplit;
 }
 function addAndBindLink() {
-	console.log("binding");
 	var link = $("<span />")
 		.text("Add to Google Calendar")
 		.addClass("gcal_link")
@@ -66,9 +65,14 @@ function get_location(response) {
 	if (venue && venue.street) {
 		result = locationTextString(response.location, venue.street, venue.city, venue.state, venue.zip);
 	} else if (venue && venue.id) {
+		var accessToken = window.location.hash.substring(1);
 		var result = "";
+		var path = "https://graph.facebook.com/"+venue.id+"?";
+		var queryParams = [accessToken];
+		var query = queryParams.join('&');
+		var venue_url = path + query;
 		$.ajax({
-			url: "https://graph.facebook.com/"+venue.id,
+			url: venue_url,
 			async: false,
 			type : "GET",
 			dataType: "JSON",
@@ -83,14 +87,15 @@ function get_location(response) {
 
 function locationTextString(name, street, city, state, zip) {
 	var result = name + ", ";
-	result = street ? result + " " + street : result;
-	result = city ? result + ", " + city : result;
-	result = state ? result + " " + state : result;
-	result = zip ? result + " " + zip : result;
+	result = street ? result + " " + $.trim(street) : result;
+	result = city ? result + ", " + $.trim(city) : result;
+	result = state ? result + " " + $.trim(state) : result;
+	result = zip ? result + " " + $.trim(zip) : result;
 	return result;
 }
 function formatTime(dateTime) {
-	var d = new XDate(new Date(dateTime)).addHours(8);
+	var d = new XDate(new Date(dateTime));
+	d.addHours(d.getTimezoneOffset()/60);
 	var dStr = d.getUTCFullYear()
            + pad(d.getUTCMonth() + 1)
            + pad(d.getUTCDate())
