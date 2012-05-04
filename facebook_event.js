@@ -62,7 +62,7 @@ if (window.location.hash.length > 0) {
 
 function get_location(response) {
 	var venue = response.venue;
-	if (venue && venue.street) {
+	if (venue && (venue.street || venue.name)) {
 		result = locationTextString(response.location, venue.street, venue.city, venue.state, venue.zip);
 	} else if (venue && venue.id) {
 		var accessToken = window.location.hash.substring(1);
