@@ -17,15 +17,15 @@
   ],
   "content_scripts": [
     {
-      "matches" : ["https://graph.facebook.com/*"],
+      "matches" : ["*://graph.facebook.com/*"],
       "js" : ["jquery.js", "xdate.js", "facebook_event.js"]
     },
     {
-      "matches" : ["https://www.facebook.com/connect/login_success.html*"],
+      "matches" : ["*://www.facebook.com/connect/login_success.html*"],
       "js" : ["jquery.js", "xdate.js", "facebook_event.js"]
     },
     {
-      "matches" : ["https://www.facebook.com/*"],
+      "matches" : ["*://www.facebook.com/*"],
       "js" : ["jquery.js", "xdate.js", "facebook_event.js"]
     }
   ]
