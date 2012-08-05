@@ -1,0 +1,12 @@
+.facebook_event_to_gcal.gcal_link {
+	margin-left: 10px;
+	font-weight: bold;
+	color: #3B5998;
+	cursor: pointer;
+}
+
+.facebook_event_to_gcal.invalid-date {
+	font-size: 75px;
+	font-weight: bold;
+	text-align: center;
+}

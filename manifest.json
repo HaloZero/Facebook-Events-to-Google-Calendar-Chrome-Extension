@@ -1,5 +1,6 @@
 {
   "name": "Facebook Events on Google Calendar™",
+  "manifest_version" : 2,
   "version": "1.1.4",
   "description": "Add individual facebook events to Google Calendar™",
   "page_action": {
@@ -13,16 +14,19 @@
   "permissions": [
     "http://*.facebook.com/*",
     "https://*.facebook.com/*",
-    "http://*.google.com/*"
+    "http://*.google.com/*",
+    "https://*.google.com/*"
   ],
   "content_scripts": [
     {
       "matches" : ["*://graph.facebook.com/*"],
-      "js" : ["jquery.js", "xdate.js", "facebook_event.js"]
+      "js" : ["jquery.js", "xdate.js", "facebook_event.js"],
+      "css" : ["facebook_event.css"]
     },
     {
       "matches" : ["*://www.facebook.com/*"],
-      "js" : ["jquery.js", "xdate.js", "facebook_event.js"]
+      "js" : ["jquery.js", "xdate.js", "facebook_event.js"],
+      "css" : ["facebook_event.css"]
     }
   ]
 }
