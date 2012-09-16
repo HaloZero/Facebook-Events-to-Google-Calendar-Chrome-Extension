@@ -9,11 +9,15 @@ function checkURL() {
 }
 
 function addAndBindLink() {
-	$("<span />")
-		.text("Add to Google Calendar")
-		.addClass("gcal_link").addClass("facebook_event_to_gcal")
-		.bind("click", openFacebook)
-		.appendTo("#headerArea .fbEventHeaderBlock .mbm");
+	if ($(".gcal_link").length === 0) {
+		// second check in case 
+		$("<span />")
+			.text("Add to Google Calendar")
+			.addClass("gcal_link").addClass("facebook_event_to_gcal")
+			.bind("click", openFacebook)
+			.appendTo("#headerArea .fbEventHeaderBlock .mbm");
+	}
+	
 }
 
 function openFacebook() {
@@ -37,7 +41,10 @@ function loadGoogleCalendar() {
 		dataType: "JSON",
 		success: function(response) {
 			var titleText = response.name;
-			var descriptionText = response.description ? response.description.substring(0, 1000) : "";
+			var description = escape(response.description);
+			var descriptionText = description ? description.substring(0, 1000) : "";
+			descriptionText = unescape(descriptionText);
+			descriptionText += "\n\nFacebook event URL is https://www.facebook.com/events/"+eventId;
 			var startTime = formatTime(response.start_time);
 			var endTime = formatTime(response.end_time);
 			if (startTime === null) {
