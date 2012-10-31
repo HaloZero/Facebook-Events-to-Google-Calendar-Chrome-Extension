@@ -1,0 +1,16 @@
+Add individual facebook events to Google Calendar™
+
+This extension allows you to quickly add any Facebook event to your Google Calendar™ with the click of a link. Including private events not possible in the current export to google calendar feature of Facebook.
+
+This app requires an Facebook app "Add Events to GCal". Don't worry about installing it! The first time you add an event to the calendar you will be asked to authorize the app, it should work from there! 
+
+The reason why is so I can access the Facebook Events API to gather all relevant information on the site. Unlike other extensions which scrape the page for information, this extension should work in all languages and all event types. 
+
+Please report any bugs or issues (or fix themselves yourself) to
+https://github.com/HaloZero/Facebook-Events-to-Google-Calendar-Chrome-Extension
+
+Known issues:
+Description strings are cut off, google will only allow 1000 characters on the event description.
+You cannot add events to a non-primary calendar, a limitation of the google calendar API
+
+The google calendar API has two ways to add a calendar event, one is the normal API that uses gets/posts and a key, this would require additional work to do cross-domain communication inside the browser. Instead a web page render that google allows you to prefill information is used isntead, this has limitations on description string lengths and a few other limitations but implementation wise is significantly easier for a chrome extension. x

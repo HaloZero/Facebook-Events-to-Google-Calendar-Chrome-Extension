@@ -1,0 +1,1 @@
+No data for Facebook Events to gCal is stored anywhere. All information is gathered purely in the browser and used to redirect users to the appropriate urls. 
