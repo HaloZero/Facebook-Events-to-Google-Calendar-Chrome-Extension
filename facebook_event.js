@@ -2,7 +2,7 @@ function checkURL() {
 	var pathSplit = window.location.pathname.split("/");
 	if (pathSplit.length > 3 && pathSplit[1] === "events") {
 		if ($(".gcal_link").length === 0) {
-			$(addAndBindLink); 
+			$(addAndBindLink);
 		}
 	}
 	delete pathSplit;
@@ -10,14 +10,14 @@ function checkURL() {
 
 function addAndBindLink() {
 	if ($(".gcal_link").length === 0) {
-		// second check in case 
+		// second check in case
 		$("<span />")
 			.text("Add to Google Calendar")
 			.addClass("gcal_link").addClass("facebook_event_to_gcal")
 			.bind("click", openFacebook)
-			.appendTo("#headerArea .fbEventHeaderBlock .mbm");
+			.appendTo("#headerArea .fbEventHeaderBlock .mtm");
 	}
-	
+
 }
 
 function openFacebook() {
