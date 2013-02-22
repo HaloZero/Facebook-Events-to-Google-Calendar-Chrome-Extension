@@ -11,11 +11,13 @@ function checkURL() {
 function addAndBindLink() {
 	if ($(".gcal_link").length === 0) {
 		// second check in case
-		$("<span />")
+		$span = $("<span />")
 			.text("Add to Google Calendar")
 			.addClass("gcal_link").addClass("facebook_event_to_gcal")
 			.bind("click", openFacebook)
-			.appendTo("#headerArea .fbEventHeaderBlock .mtm");
+		if ($(".fbEventHeaderBlock span.fcg").length > 0) {
+			$span.appendTo($(".fbEventHeaderBlock span.fcg"));
+		}
 	}
 
 }
