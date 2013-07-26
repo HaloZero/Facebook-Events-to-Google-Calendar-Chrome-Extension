@@ -2,7 +2,7 @@ function checkURL() {
 	var pathSplit = window.location.pathname.split("/");
 	if (pathSplit.length > 3 && pathSplit[1] === "events") {
 		if ($(".gcal_link").length === 0) {
-			$(addAndBindLink);
+			addAndBindLink();
 		}
 	}
 	delete pathSplit;
@@ -65,7 +65,11 @@ function loadGoogleCalendar() {
 				'output' : 'xml'
 			});
 			var href = "https://www.google.com/calendar/render?" + gCalParams;
-			window.open(href, "_self");
+			$("body").append($("<div>").text("Trying to load google calendar url now"));
+			setTimeout(function() {
+				window.open(href, "_self");
+			}, 700);
+
 		}
 	});
 }
@@ -124,7 +128,6 @@ function formatTime(dateTime) {
 		return null;
 	}
 }
-
 
 if (window.location.hash.length > 0 && window.location.pathname.match("connect/login_success")) {
 	try {
