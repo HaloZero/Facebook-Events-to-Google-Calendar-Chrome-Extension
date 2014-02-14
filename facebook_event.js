@@ -47,6 +47,8 @@ function loadGoogleCalendar() {
 			var descriptionText = description ? description.substring(0, 1000) : "";
 			descriptionText = unescape(descriptionText);
 			descriptionText += "\n\nFacebook event URL is https://www.facebook.com/events/"+eventId;
+
+			// as of 2014-02-14, facebook is returning start_time and end_time encoded with a specific time zone
 			var startTime = formatTime(response.start_time);
 			var endTime = formatTime(response.end_time);
 			if (startTime === null) {
@@ -124,7 +126,8 @@ function convertDateToString(d) {
 	}
 
 	if (d.valid()) {
-		d.addHours(d.getTimezoneOffset()/60);
+		// TODO: facebook is no longer returning timezones correctly?
+		// d.addHours(d.getTimezoneOffset()/60);
 		var dStr = d.getUTCFullYear()
 	           + pad(d.getUTCMonth() + 1)
 	           + pad(d.getUTCDate())
