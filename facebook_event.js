@@ -53,6 +53,11 @@ function loadGoogleCalendar() {
 				$("<div />").addClass("invalid-date facebook_event_to_gcal").text("I'm sorry but the date on this event is invalid! Please try again");
 				return;
 			}
+			if (endTime == null) {
+				var fakeEnd = new XDate(new Date(response.start_time));
+				fakeEnd.addHours(3);
+				endTime = formatTime(fakeEnd);
+			}
 			var locationText = get_location(response).replace(/\n$/,'').replace(/\n/g,'');
 			var gCalParams = $.param({
 				"action" : 'TEMPLATE',
@@ -107,13 +112,17 @@ function locationTextString(name, street, city, state, zip) {
 }
 
 function formatTime(dateTime) {
+	var d = new XDate(new Date(dateTime));
+	return convertDateToString(d);
+}
 
+// @params [XDate]
+function convertDateToString(d) {
 	function pad(str) {
 	  str = str.toString();
 	  return (str.length == 1) ? '0' + str : str;
 	}
 
-	var d = new XDate(new Date(dateTime));
 	if (d.valid()) {
 		d.addHours(d.getTimezoneOffset()/60);
 		var dStr = d.getUTCFullYear()
@@ -128,6 +137,7 @@ function formatTime(dateTime) {
 		return null;
 	}
 }
+
 
 if (window.location.hash.length > 0 && window.location.pathname.match("connect/login_success")) {
 	try {
