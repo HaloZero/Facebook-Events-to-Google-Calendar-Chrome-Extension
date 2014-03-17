@@ -1,7 +1,7 @@
 {
   "name": "Facebook Events on Google Calendar™",
   "manifest_version" : 2,
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "Add individual facebook events to Google Calendar™",
   "page_action": {
     "default_icon": "calendar_icon_16.png"
