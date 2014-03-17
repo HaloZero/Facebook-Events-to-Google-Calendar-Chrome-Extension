@@ -14,9 +14,15 @@ function addAndBindLink() {
 		$span = $("<span />")
 			.text("Add to Google Calendar")
 			.addClass("gcal_link").addClass("facebook_event_to_gcal")
-			.bind("click", openFacebook)
+			.bind("click", openFacebook);
+		// old event page as of 3/16/2014
 		if ($(".fbEventHeaderBlock span.fcg").length > 0) {
 			$span.appendTo($(".fbEventHeaderBlock span.fcg"));
+		}
+
+		// new event page as of 3/16/2014
+		if ($("#event_featuring_line").length > 0) {
+			$span.appendTo($("#event_featuring_line"));
 		}
 	}
 
