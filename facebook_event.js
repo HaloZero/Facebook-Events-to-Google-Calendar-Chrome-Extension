@@ -47,6 +47,8 @@ function loadGoogleCalendar() {
 		url : event_url,
 		type : "GET",
 		dataType: "JSON",
+		tryCount : 0,
+    	retryLimit : 3,
 		success: function(response) {
 			var titleText = response.name;
 			var description = escape(response.description);
@@ -77,12 +79,21 @@ function loadGoogleCalendar() {
 				'gsessionid' : 'OK',
 				'output' : 'xml'
 			});
-			var href = "https://www.google.com/calendar/render?" + gCalParams;
+			var href = "https://calendar.google.com/calendar/render?" + gCalParams;
 			$("body").append($("<div>").text("Trying to load google calendar url now"));
 			setTimeout(function() {
 				window.open(href, "_self");
 			}, 700);
-
+		},
+		error: function(error, jqxhr, settings, thrownError ) {
+			$("body").append($("<div>").text("Information request failed. Trying again"));
+			this.tryCount += 1;
+			if (this.tryCount <= this.retryLimit) {
+				$.ajax(this);
+                return;
+			} else {
+				$("body").append($("<div>").text("Tried 3 times, failed. Please go back to Facebook and try again"));
+			}
 		}
 	});
 }
