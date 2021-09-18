@@ -15,15 +15,11 @@ function addAndBindLink() {
 			.text("Add to Google Calendar")
 			.addClass("gcal_link").addClass("facebook_event_to_gcal")
 			.bind("click", openFacebook);
-		// old event page as of 3/16/2014
-		if ($(".fbEventHeaderBlock span.fcg").length > 0) {
-			$span.appendTo($(".fbEventHeaderBlock span.fcg"));
-		}
 
-		// new event page as of 3/16/2014
-		if ($("#event_featuring_line").length > 0) {
-			$span.appendTo($("#event_featuring_line"));
-		}
+		var title = document.querySelector("title").text.split("|")[0].trim()
+		var titleSpan = Array.from(document.querySelectorAll('span')).find(el => el.textContent === title);
+		var $container = $(titleSpan).parent("div")
+		$span.appendTo($container);
 	}
 
 }
